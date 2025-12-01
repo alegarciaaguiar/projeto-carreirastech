@@ -1,0 +1,139 @@
+{% extends "modelo.html" %}
+{% block projeto %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .menu a:hover {
+            color: white;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background: #343a40;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border: 1px solid white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.4);
+        }
+
+        .card h2 {
+            color: white;
+        }
+
+        ul li {
+            color: #cbd5e1;
+            margin: 6px 0;
+        }
+
+        footer {
+            background: #343a40;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-top: 2px solid #343a40;
+            margin-top: 40px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #555;
+            background: white;
+            color: #e0e0e0;
+            font-size: 15px;
+        }
+
+        textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 14px;
+            background: white;
+            color: black;
+            border: none;
+            border-radius: 6px;
+            font-size: 17px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: grey;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="d-flex justify-content-center align-items-center pt-3">
+    <h1>Contato</h1>
+</div>
+
+<div class="container">
+    <div class="card">
+        <h2>Fale Conosco</h2>
+        <form action="{{} url_for('criar_termo') }}" method="POST">
+            <label for="nome">Nome:</label>
+            <input class="form-control" id="nome" name="nome" aria-describedby="termoHelp">
+
+            <label for="email">E-mail:</label>
+            <input class="form-control" id="email" name="email" aria-describedby="termoHelp">
+
+            <label for="assunto">Assunto:</label>
+           <input class="form-control" id="assunto" name="assunto" aria-describedby="termoHelp">
+
+            <label for="mensagem">Mensagem:</label>
+            <textarea class="form-control" id="mensagem" name="mensagem" required></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 Projeto Carreiras Tech | Todos os direitos reservados
+</footer>
+
+</body>
+</html>
+
+
+
+{% endblock %}

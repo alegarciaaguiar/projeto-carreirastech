@@ -1,0 +1,127 @@
+{% extends "modelo.html" %}
+{% block projeto %}
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+        }
+
+        header {
+            background: white;
+            color: black;
+            padding: 25px;
+            text-align: center;
+            border-bottom: 2px solid white;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .menu a:hover {
+            color: white;
+        }
+
+        .hero {
+            background: url('imagens/tech.jpg') center/cover no-repeat fixed;
+            padding: 100px 20px;
+            color: #e5e7eb;
+            text-align: center;
+            font-size: 1.5rem;
+            backdrop-filter: brightness(0.6);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background: #343a40;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border: 1px solid #343a40;
+            box-shadow: 0 0 10px rgba(0,0,0,0.4);
+        }
+
+        .card h2 {
+            color: white;
+        }
+
+        ul li {
+            color: #cbd5e1;
+            margin: 6px 0;
+        }
+
+        footer {
+            background: #343a40;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-top: 2px solid #343a40;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero">
+        <h1>Carreira Tech</h1>
+        <br>
+        <h2>O futuro é tecnológico — e você pode fazer parte dele</h2>
+        <p>Explore as áreas em alta no mercado Tech e descubra como iniciar sua jornada.</p>
+    </section>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>Por que escolher uma carreira em tecnologia?</h2>
+            <p>
+                A tecnologia está entre os setores que mais crescem no mundo.
+                Com alta demanda profissional, salários atrativos e trabalho remoto,
+                é uma área cheia de oportunidades.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>Áreas Promissoras</h2>
+            <ul>
+                <li>Desenvolvimento de Software</li>
+                <li>Segurança Cibernética</li>
+                <li>Ciência de Dados e Inteligência Artificial</li>
+                <li>UX / UI Design</li>
+                <li>Computação em Nuvem (Cloud)</li>
+                <li>Redes e Infraestrutura</li>
+                <li>Banco de Dados</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Como começar?</h2>
+            <p>
+                Inicie com lógica de programação, escolha uma área que combine com você e
+                pratique com projetos reais. O mercado valoriza quem aprende fazendo.
+            </p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Projeto Carreiras Tech • Desenvolvido pela Turma</p>
+    </footer>
+
+</body>
+</html>
+
+{% endblock %}

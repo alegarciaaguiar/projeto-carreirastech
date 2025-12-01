@@ -1,0 +1,55 @@
+{% extends "modelo.html" %}
+{% block projeto %}
+
+<div class="d-flex justify-content-center align-items-center pt-3">
+    <h1>Ranking Tech</h1>
+</div>
+    <br>
+
+<div class="d-flex justify-content-center align-items-center pt-3">
+     <h3>A seguir apresentamos um ranking das funções no cenário atual e suas respectivas habilidades necessárias</h3>
+</div>
+
+<br>
+
+<style>
+        footer {
+            background: #343a40;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-top: 2px solid #343a40;
+            margin-top: 40px;
+        }
+</style>
+<div class="container pt-3">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Atuação</th>
+          <th scope="col">Média Salarial</th>
+          <th scope="col">Nível de Entrada</th>
+          <th scope="col">Principais Habilidades</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      {% for termo in glossario%}
+        <tr>
+          <th scope="row">{{ loop.index}}</th>
+          <td>{{ termo[0] }}</td>
+          <td>{{ termo[1] }}</td>
+          <td>{{ termo[2] }}</td>
+          <td>{{ termo[3] }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+</div>
+
+<footer>
+    &copy; 2025 Projeto Carreiras Tech | Todos os direitos reservados
+</footer>
+
+{% endblock %}

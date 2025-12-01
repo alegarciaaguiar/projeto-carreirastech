@@ -1,0 +1,106 @@
+{% extends "modelo.html" %}
+{% block projeto %}
+
+<div class="d-flex justify-content-center align-items-center pt-3">
+    <h1>História</h1>
+</div>
+    <br>
+
+<div class="d-flex justify-content-center align-items-center pt-3">
+    <h3>A evolução da Tecnologia</h3>
+</div>
+    <br>
+
+<style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #2b3034;
+            color: #e0e0e0; /* texto claro */
+        }
+
+        .menu a {
+            color: #e0e0e0;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .menu a:hover {
+            color: white;
+        }
+
+        .hero {
+            background: url('imagens/tech-dark.jpg') center/cover no-repeat fixed;
+            padding: 100px 20px;
+            color: #f5f5f5;
+            text-align: center;
+            font-size: 1.5rem;
+            backdrop-filter: brightness(0.6);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background: #1f1f1f; /* cinza escuro */
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border: 1px solid #2b3034;
+        }
+
+        .card h2 {
+            color: #ffffff; /* branco */
+        }
+
+        ul li {
+            color: #cbd5e1; /* cinza claro */
+            margin: 6px 0;
+        }
+
+        footer {
+            background: #2b3034;
+            color: #ffffff; /* branco */
+            text-align: center;
+            padding: 15px;
+            border-top: 2px solid #2b3034;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    Explore como a tecnologia transformou nossa vida ao longo do tempo
+</div>
+
+<div class="container">
+    <h2>O Início da Computação</h2>
+    <p>A história da tecnologia moderna começou com os primeiros computadores eletrônicos, nas décadas de 1940 e 1950. Essas máquinas ocupavam salas inteiras e eram capazes de realizar cálculos complexos que antes eram feitos manualmente, principalmente em laboratórios e instituições governamentais. Cada avanço nesse período representava um salto significativo no processamento de informações.</p>
+    <img src="imagens/pc.png" alt="computador">
+    
+    
+    <h2>A Era dos Microcomputadores</h2>
+    <p>Na década de 1970, os microcomputadores começaram a surgir, trazendo a computação para casas e escritórios. Empresas como Apple e IBM popularizaram os computadores pessoais, permitindo que indivíduos pudessem usar máquinas para trabalho, estudo e lazer. Essa democratização da tecnologia iniciou uma mudança profunda na sociedade.</p>
+
+    <h2>A Revolução da Internet</h2>
+    <p>Nos anos 1990, a internet começou a se expandir, conectando pessoas e instituições ao redor do mundo. O acesso à informação, a comunicação instantânea e o surgimento de novos serviços online transformaram a forma como vivemos e trabalhamos. E-mails, sites e buscadores se tornaram essenciais, marcando o início da era digital.</p>
+
+    <h2>Tecnologia Móvel e Inteligência Artificial</h2>
+    <p>A partir dos anos 2000, smartphones e tablets tornaram-se comuns, colocando poder computacional e conectividade na palma das mãos. Paralelamente, a inteligência artificial começou a se desenvolver, permitindo assistentes virtuais, algoritmos de recomendação e automação de tarefas complexas. Hoje, a tecnologia está profundamente integrada à vida cotidiana, moldando a maneira como interagimos, aprendemos e trabalhamos.</p>
+
+    <h2>O Futuro da Tecnologia</h2>
+    <p>O futuro promete ainda mais avanços: computação quântica, realidade aumentada, veículos autônomos e inteligência artificial avançada. Cada inovação continuará transformando a sociedade, criando novas possibilidades e desafios éticos. A evolução tecnológica é contínua e inexorável, moldando o mundo em que vivemos e deixando um legado que continuará crescendo.</p>
+</div>
+
+
+<footer>
+    &copy; 2025 Projeto Carreiras Tech | Todos os direitos reservados
+</footer>
+
+{% endblock %}
