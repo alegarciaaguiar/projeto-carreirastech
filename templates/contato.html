@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Contato</title>
 
     <style>
@@ -109,7 +110,7 @@
 <div class="container">
     <div class="card">
         <h2>Fale Conosco</h2>
-        <form action="{{} url_for('criar_termo') }}" method="POST">
+        <form action="{{ url_for('criar_termo') }}" method="POST">
             <label for="nome">Nome:</label>
             <input class="form-control" id="nome" name="nome" aria-describedby="termoHelp">
 

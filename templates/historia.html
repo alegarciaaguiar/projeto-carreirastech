@@ -32,7 +32,7 @@
         }
 
         .hero {
-            background: url('imagens/tech-dark.jpg') center/cover no-repeat fixed;
+            background: url('{{ url_for("imagens_static", filename="tech-dark.jpg") }}') center/cover no-repeat fixed;
             padding: 100px 20px;
             color: #f5f5f5;
             text-align: center;
@@ -82,7 +82,7 @@
 <div class="container">
     <h2>O Início da Computação</h2>
     <p>A história da tecnologia moderna começou com os primeiros computadores eletrônicos, nas décadas de 1940 e 1950. Essas máquinas ocupavam salas inteiras e eram capazes de realizar cálculos complexos que antes eram feitos manualmente, principalmente em laboratórios e instituições governamentais. Cada avanço nesse período representava um salto significativo no processamento de informações.</p>
-    <img src="imagens/pc.png" alt="computador">
+    <img src="{{ url_for('imagens_static', filename='pc.png') }}" alt="computador">
     
     
     <h2>A Era dos Microcomputadores</h2>

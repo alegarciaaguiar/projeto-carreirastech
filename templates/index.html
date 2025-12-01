@@ -31,7 +31,7 @@
         }
 
         .hero {
-            background: url('imagens/tech.jpg') center/cover no-repeat fixed;
+            background: url('{{ url_for("imagens_static", filename="tech.jpg") }}') center/cover no-repeat fixed;
             padding: 100px 20px;
             color: #e5e7eb;
             text-align: center;
