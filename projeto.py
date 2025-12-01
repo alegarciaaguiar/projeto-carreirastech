@@ -1,9 +1,12 @@
 import os
 import csv
-from flask import Flask, render_template, url_for, request, send_from_directory, abort
+from flask import Flask, render_template, url_for, request, send_from_directory, abort, session, redirect
 import traceback
 
 app = Flask(__name__)
+
+# secret key for session. In production set FLASK_SECRET env var to a secure value.
+app.secret_key = os.environ.get('FLASK_SECRET', 'dev_secret_change_me')
 
 #Definindo ambiente para modo desenvolvimento (debug)
 os.environ['FLASK_DEBUG'] = 'True'
@@ -156,12 +159,38 @@ def gemini():
                         ai_response = f"(Fallback) Recebi sua pergunta: {question}"
                     else:
                         ai_response = ai_text
+
+                    # persist conversation in session
+                    try:
+                        conv = session.get('conversation', [])
+                        conv.append({'role': 'user', 'text': question})
+                        conv.append({'role': 'gemini', 'text': ai_response})
+                        session['conversation'] = conv
+                    except Exception:
+                        # if session storage fails, ignore and continue
+                        pass
                 except Exception as e:
                     error = 'Erro ao chamar a API de geração: ' + str(e)
                     error += '\n' + traceback.format_exc()
 
-    return render_template('gemini.html', question=question, ai_response=ai_response, error=error,
-                           genai_installed=genai_installed, genai_configured=genai_configured)
+    # load conversation to display
+    conversation = session.get('conversation', [])
+
+    return render_template(
+        'gemini.html',
+        question=question,
+        ai_response=ai_response,
+        error=error,
+        genai_installed=genai_installed,
+        genai_configured=genai_configured,
+        conversation=conversation,
+    )
+
+
+@app.route('/gemini/clear', methods=['POST', 'GET'])
+def gemini_clear():
+    session.pop('conversation', None)
+    return redirect(url_for('gemini'))
 
 
 if __name__ == '__main__':

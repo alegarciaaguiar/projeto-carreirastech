@@ -1,85 +1,95 @@
 {% extends "modelo.html" %} {% block projeto %}
 
-<div class="d-flex justify-content-center align-items-center pt-3">
-  <h1>Interação com IA</h1>
-  <div class="card-custom">
-    <form method="post" action="/gemini">
-      <div class="mb-2">
-        <label for="question" class="form-label"><strong>Sua pergunta</strong></label>
-        <textarea id="question" name="question" placeholder="Escreva sua pergunta aqui...">{% if question %}{{ question }}{% endif %}</textarea>
-      </div>
-      <div>
-        <button class="btn-primary-custom" type="submit">Enviar pergunta</button>
-      </div>
-    </form>
+<div class="hero">
+  <p>Faça uma pergunta para a IA.</p>
+</div>
 
-    {% if error %}
-    <div class="result" style="background:#2b0b0b; border-color:#6b2b2b;">
-      <strong>Aviso / Erro:</strong>
-      <div style="white-space:pre-wrap">{{ error }}</div>
-    </div>
-    {% endif %}
-
-    <!-- Conversa: exibe pergunta (usuário) e resposta (Gemini) em ordem -->
-    {% if question and ai_response %}
-    <div style="margin-top:16px;">
-      <h5 style="color:#cfd4d8;">Conversa com Gemini</h5>
-      <div style="margin-top:8px;">
-        <div style="background:#0b3a57; color:#fff; padding:10px; border-radius:8px; margin-bottom:8px;">
-          <strong>Você:</strong>
-          <div style="margin-top:6px;">{{ question }}</div>
-        </div>
-
-        <div style="background:#1b1b1b; color:#e6e6e6; padding:10px; border-radius:8px;">
-          <strong>Gemini:</strong>
-          <div style="margin-top:6px;">{{ ai_response }}</div>
-        </div>
-      </div>
-    </div>
-    {% elif question and not ai_response %}
-    <div style="margin-top:16px;">
-      <h5 style="color:#cfd4d8;">Conversa com Gemini</h5>
-      <div style="margin-top:8px;">
-        <div style="background:#0b3a57; color:#fff; padding:10px; border-radius:8px;">
-          <strong>Você:</strong>
-          <div style="margin-top:6px;">{{ question }}</div>
-        </div>
-        <div style="margin-top:8px; color:#cfd4d8;">A resposta ainda não está disponível.</div>
-      </div>
-    </div>
-    {% endif %}
-
-  </div>
-  pre {
-    background: #111;
-    color: #ddd;
+<style>
+  .hero {
+    padding: 48px 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero p {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #e6e6e6;
+  }
+  .gemini-container {
+    max-width: 800px;
+    margin: 24px auto;
+    padding: 0 16px;
+  }
+  .card-custom {
+    background: #1f1f1f;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #2b3034;
+  }
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  textarea#question {
+    width: 100%;
+    min-height: 120px;
+    background: #222;
+    color: #eaeaea;
     padding: 8px;
     border-radius: 6px;
+    border: 1px solid #3a3a3a;
+  }
+  .btn-primary-custom {
+    background: #495057;
+    color: #fff;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 6px;
+  }
+  .conversation {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .bubble.user {
+    align-self: flex-start;
+    background: #0b3a57;
+    color: #fff;
+    padding: 12px;
+    border-radius: 10px;
+    max-width: 100%;
+  }
+  .bubble.gemini {
+    align-self: flex-start;
+    background: #111;
+    color: #e6e6e6;
+    padding: 12px;
+    border-radius: 10px;
+    max-width: 100%;
+  }
+  @media (min-width: 900px) {
+    .bubble.user,
+    .bubble.gemini {
+      max-width: 75%;
+    }
   }
 </style>
 
-<div class="hero">
-  <p>
-    Faça uma pergunta para a IA. A integração tenta usar Google Gemini se
-    configurado.
-  </p>
-</div>
-
-<div class="container">
+<div class="gemini-container">
   <div class="card-custom">
-    <form method="post" action="/gemini">
-      <div class="mb-2">
-        <label for="question" class="form-label"
-          ><strong>Sua pergunta</strong></label
-        >
-        <textarea
-          id="question"
-          name="question"
-          placeholder="Escreva sua pergunta aqui..."
-        >
+    <form method="post" action="/gemini" class="form-row">
+      <label for="question"><strong>Sua pergunta</strong></label>
+      <textarea
+        id="question"
+        name="question"
+        placeholder="Escreva sua pergunta aqui..."
+      >
 {% if question %}{{ question }}{% endif %}</textarea
-        >
-      </div>
+      >
       <div>
         <button class="btn-primary-custom" type="submit">
           Enviar pergunta
@@ -87,60 +97,45 @@
       </div>
     </form>
 
-    <div style="margin-top: 12px; font-size: 14px; color: #cfd4d8">
-      <strong>Integração Gemini:</strong>
-      {% if genai_installed %}
-      <span style="color: lightgreen">biblioteca instalada</span>
-      {% else %}
-      <span style="color: orangered">biblioteca não instalada</span>
-      {% endif %} &nbsp;|&nbsp; {% if genai_configured %}
-      <span style="color: lightgreen">credenciais configuradas</span>
-      {% else %}
-      <span style="color: orangered">credenciais não configuradas</span>
-      {% endif %}
-    </div>
-
     {% if error %}
-    <div class="result" style="background: #2b0b0b; border-color: #6b2b2b">
+    <div style="margin-top: 12px" class="result">
       <strong>Aviso / Erro:</strong>
       <div style="white-space: pre-wrap">{{ error }}</div>
     </div>
-    {% endif %} {% if not genai_installed %}
-    <div class="result">
-      <strong>Como instalar (no servidor):</strong>
-      <div>Abra o terminal e rode:</div>
-      <pre>pip install google-generativeai</pre>
-    </div>
-    {% endif %} {% if genai_installed and not genai_configured %}
-    <div class="result">
-      <strong>Como configurar credenciais:</strong>
-      <div>
-        Exporte a variável de ambiente para usar a API key (PowerShell):
+    {% endif %} {% if conversation and conversation|length > 0 %}
+    <div class="conversation">
+      {% for item in conversation %} {% if item.role == 'user' %}
+      <div class="bubble user">
+        <strong>Você:</strong>
+        <div style="margin-top: 6px">{{ item.text }}</div>
       </div>
-      <pre>
-$env:GOOGLE_API_KEY = 'SUA_CHAVE_AQUI'
-python projeto.py</pre
-      >
-      <div>
-        ou defina <code>GOOGLE_APPLICATION_CREDENTIALS</code> apontando para o
-        JSON da service account.
+      {% else %}
+      <div class="bubble gemini">
+        <strong>Gemini:</strong>
+        <div style="margin-top: 6px">{{ item.text }}</div>
       </div>
+      {% endif %} {% endfor %}
     </div>
-    {% endif %} {% if ai_response %}
-    <div class="result">
-      <strong>Resposta:</strong>
-      <div>{{ ai_response }}</div>
+    {% else %} {% if question %}
+    <div class="conversation">
+      <div class="bubble user">
+        <strong>Você:</strong>
+        <div style="margin-top: 6px">{{ question }}</div>
+      </div>
+      {% if ai_response %}
+      <div class="bubble gemini">
+        <strong>Gemini:</strong>
+        <div style="margin-top: 6px">{{ ai_response }}</div>
+      </div>
+      {% else %}
+      <div style="color: #cfd4d8">A resposta ainda não está disponível.</div>
+      {% endif %}
     </div>
-    {% elif question %}
-    <div class="result">
-      <strong>Pergunta enviada:</strong>
-      <div>{{ question }}</div>
-    </div>
-    {% endif %}
+    {% endif %} {% endif %}
   </div>
 </div>
 
-<footer>
+<footer style="text-align: center; margin-top: 24px">
   &copy; 2025 Projeto Carreiras Tech | Todos os direitos reservados
 </footer>
 
